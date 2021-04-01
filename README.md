@@ -1,4 +1,4 @@
-# EggyUtils
+# Eggy#Utils
 Utilities for c# applications.
 
 <div align="center">
