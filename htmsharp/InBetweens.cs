@@ -22,18 +22,6 @@ namespace htmsharp
                     return PureHTML.Split(new string[] { $"<{blockname}>" }, StringSplitOptions.None)[1];
                 }
             }
-            public static class GetProp
-            {
-                /// <summary>
-                /// Gets the data from an HTML property.
-                /// </summary>
-                /// <param name="propname">The property name.</param>
-                /// <returns></returns>
-                public static string GetProperties(string propname)
-                {
-                    return PureHTML.Split(new string[] { $"{propname}=" }, StringSplitOptions.None)[1].Replace('"', char.MinValue);
-                }
-            }
         }
     }
 }
