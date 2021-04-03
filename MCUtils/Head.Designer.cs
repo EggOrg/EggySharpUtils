@@ -37,7 +37,6 @@ namespace MCUtils
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Name = "Head";
-            this.Load += new System.EventHandler(this.GetHead);
             this.ResumeLayout(false);
 
         }
