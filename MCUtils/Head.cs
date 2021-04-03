@@ -45,5 +45,9 @@ namespace MCUtils
                 NAME = name;
             }
         }
+        public class MCJSON
+        {
+            public string uuid { get; set; }
+        }
     }
 }
