@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EggySwitch", "EggySwitch\Eg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "htmsharp", "htmsharp\htmsharp.csproj", "{0859DC69-A7DB-4703-BB7C-BD3EF2D4B500}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevUp", "DevUp\DevUp.csproj", "{29D69AA9-11B8-480D-9675-C36B492C1406}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0859DC69-A7DB-4703-BB7C-BD3EF2D4B500}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0859DC69-A7DB-4703-BB7C-BD3EF2D4B500}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0859DC69-A7DB-4703-BB7C-BD3EF2D4B500}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29D69AA9-11B8-480D-9675-C36B492C1406}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29D69AA9-11B8-480D-9675-C36B492C1406}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29D69AA9-11B8-480D-9675-C36B492C1406}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29D69AA9-11B8-480D-9675-C36B492C1406}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
