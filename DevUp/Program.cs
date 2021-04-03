@@ -19,7 +19,10 @@ namespace DevUp
                     Console.WriteLine("Downloading the latest Gradle distribution near you...");
                     if (args[1] == "-o")
                     {
-                        new WebClient().DownloadFile("https://services.gradle.org/distributions/gradle-7.0-rc-2-bin.zip", args[2]);
+                        Console.WriteLine("Downloading...");
+                        WebClient wc = new WebClient();
+                        wc.DownloadFileAsync(new Uri("https://services.gradle.org/distributions/gradle-7.0-rc-2-bin.zip"), args[2]);
+                        Console.WriteLine("Worked!");
                     }
                 }
             }
