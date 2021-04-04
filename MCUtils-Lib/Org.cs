@@ -35,6 +35,18 @@ namespace MCUtils
                 NAME = name;
             }
         }
+        
+        /// <summary>
+        /// An MCOBJECT to store data about a user (UUID, name).
+        /// </summary>
+        public class MCObject
+        {
+            public string id { get; set; }
+            public string name { get; set; }
+        }
+    }
+    public static class Convert
+    {
         /// <summary>
         /// Converts an MCNAME to an MCObject.
         /// </summary>
@@ -43,17 +55,9 @@ namespace MCUtils
         public static async Task<Hookins.MCObject> ToMCObject(Hookins.MCNAME username)
         {
             HttpClient cl = new HttpClient();
-            string response = await cl.GetStringAsync($"api.mojang.com/users/profiles/minecraft/{username}");
+            string response = await cl.GetStringAsync($"https://api.mojang.com/users/profiles/minecraft/{username}");
             Hookins.MCObject jrop = JsonConvert.DeserializeObject<Hookins.MCObject>(response);
             return jrop;
-        }
-        /// <summary>
-        /// An MCOBJECT to store data about a user (UUID, name).
-        /// </summary>
-        public class MCObject
-        {
-            public string id { get; set; }
-            public string name { get; set; }
         }
     }
 }
