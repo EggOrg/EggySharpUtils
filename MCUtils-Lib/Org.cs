@@ -130,7 +130,7 @@ namespace MCUtils
     {
         public static class Imaging
         {
-            public static Image CrafatarFromUUID(Hookins.MCPlayerObject mp, Enums.CrafatarImagingStyles st)
+            public static Image Crafatar(Hookins.MCPlayerObject mp, Enums.CrafatarImagingStyles st)
             {
                 WebClient wc = new WebClient();
                 byte[] av = { };
@@ -150,25 +150,25 @@ namespace MCUtils
                 System.Drawing.Image ig = System.Drawing.Image.FromStream(ms);
                 return ig;
             }
-            public static Image MinotarFromUsername(Hookins.MCNAME mp, Enums.MinotarImagingStyles st)
+            public static Image Minotar(Hookins.MCPlayerObject mp, Enums.MinotarImagingStyles st)
             {
                 WebClient wc = new WebClient();
                 byte[] av = { };
                 if (st == Enums.MinotarImagingStyles.avatar)
                 {
-                    av = wc.DownloadData($"https://minotar.net/helm/{mp.NAME}/100.png");
+                    av = wc.DownloadData($"https://minotar.net/helm/{mp.name}/100.png");
                 }
                 else if (st == Enums.MinotarImagingStyles.body)
                 {
-                    av = wc.DownloadData($"https://minotar.net/armor/body/{mp.NAME}/100.png");
+                    av = wc.DownloadData($"https://minotar.net/armor/body/{mp.name}/100.png");
                 }
                 else if (st == Enums.MinotarImagingStyles.bust)
                 {
-                    av = wc.DownloadData("https://minotar.net/armor/bust/{mp.NAME}/100.png");
+                    av = wc.DownloadData("https://minotar.net/armor/bust/{mp.name}/100.png");
                 }
                 else if (st == Enums.MinotarImagingStyles.cube)
                 {
-                    av = wc.DownloadData("https://minotar.net/cube/{mp.NAME}/100.png");
+                    av = wc.DownloadData("https://minotar.net/cube/{mp.name}/100.png");
                 }
                 MemoryStream ms = new MemoryStream(av);
                 System.Drawing.Image ig = System.Drawing.Image.FromStream(ms);
