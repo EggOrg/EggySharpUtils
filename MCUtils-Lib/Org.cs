@@ -146,6 +146,14 @@ namespace MCUtils
                 {
                     av = wc.DownloadData($"https://crafatar.com/renders/head/{mp.id}");
                 }
+                else if (st == Enums.CrafatarImagingStyles.skin)
+                {
+                    av = wc.DownloadData($"https://crafatar.com/skins/{mp.id}");
+                }
+                else if (st == Enums.CrafatarImagingStyles.cape)
+                {
+                    av = wc.DownloadData($"https://crafatar.com/capes/{mp.id}");
+                }
                 MemoryStream ms = new MemoryStream(av);
                 System.Drawing.Image ig = System.Drawing.Image.FromStream(ms);
                 return ig;
@@ -170,6 +178,10 @@ namespace MCUtils
                 {
                     av = wc.DownloadData($"https://minotar.net/cube/{mp.name}/100.png");
                 }
+                else if (st == Enums.MinotarImagingStyles.skin)
+                {
+                    av = wc.DownloadData($"https://minotar.net/skin/{mp.name}");
+                }
                 MemoryStream ms = new MemoryStream(av);
                 System.Drawing.Image ig = System.Drawing.Image.FromStream(ms);
                 return ig;
@@ -180,14 +192,17 @@ namespace MCUtils
                 {
                     avatar,
                     body,
-                    head
+                    head,
+                    skin,
+                    cape
                 }
                 public enum MinotarImagingStyles
                 {
                     avatar,
                     cube,
                     body,
-                    bust
+                    bust,
+                    skin
                 }
             }
         }
