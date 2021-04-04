@@ -2,13 +2,13 @@
 Utilities for c# applications.
 
 ## DevUp
-Package manager for developers. Includes Gradle.
+Package manager for developers. Only includes Gradle as of now.
 
 ## EggySwitch
 Switch parser for console applications.
 
 ## MCUtils-Lib
-Minecraft library for c#, to recieve player and server information.
+Minecraft library for c#, to recieve player and server information. This also supports getting images of players from 2 sources (Crafatar, Minotar).
 
 
 <div align="center">
