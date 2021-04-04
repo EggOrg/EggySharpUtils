@@ -11,12 +11,12 @@ namespace MCUtils
 {
     class UUID
     {
-        public async Task<string> UserToUUIDAsync(string username)
+        public static async Task<Hookins.MCJSON> UserToMCJSON(string username)
         {
             HttpClient cl = new HttpClient();
             string response = await cl.GetStringAsync($"api.mojang.com/users/profiles/minecraft/{username}");
             Hookins.MCJSON jrop = JsonConvert.DeserializeObject<Hookins.MCJSON>(response);
-            return jrop.uuid;
+            return jrop;
         }
     }
 }

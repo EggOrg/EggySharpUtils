@@ -27,27 +27,4 @@ namespace MCUtils
             this.BackgroundImage = Image.FromFile($"https://minotar.net/avatar/{nme.NAME}");
         }
     }
-    public class Hookins
-    {
-        public struct MCUUID
-        {
-            public string UUID { get; set; }
-            public MCUUID(string uuid)
-            {
-                UUID = uuid;
-            }
-        }
-        public struct MCNAME
-        {
-            public string NAME { get; set; }
-            public MCNAME(string name)
-            {
-                NAME = name;
-            }
-        }
-        public class MCJSON
-        {
-            public string uuid { get; set; }
-        }
-    }
 }
