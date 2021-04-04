@@ -2,7 +2,7 @@
 Utilities for c# applications.
 
 ## DevUp
-Package manager for developers. Includes Gradle.
+Package manager for developers. Only includes Gradle as of now.
 
 ## EggySwitch
 Switch parser for console applications.
