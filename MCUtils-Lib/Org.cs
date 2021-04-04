@@ -164,11 +164,11 @@ namespace MCUtils
                 }
                 else if (st == Enums.MinotarImagingStyles.bust)
                 {
-                    av = wc.DownloadData("https://minotar.net/armor/bust/{mp.name}/100.png");
+                    av = wc.DownloadData($"https://minotar.net/armor/bust/{mp.name}/100.png");
                 }
                 else if (st == Enums.MinotarImagingStyles.cube)
                 {
-                    av = wc.DownloadData("https://minotar.net/cube/{mp.name}/100.png");
+                    av = wc.DownloadData($"https://minotar.net/cube/{mp.name}/100.png");
                 }
                 MemoryStream ms = new MemoryStream(av);
                 System.Drawing.Image ig = System.Drawing.Image.FromStream(ms);
