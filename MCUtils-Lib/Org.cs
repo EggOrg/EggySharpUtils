@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,7 +57,7 @@ namespace MCUtils
         public static async Task<Hookins.MCObject> ToMCObject(Hookins.MCNAME username)
         {
             HttpClient cl = new HttpClient();
-            string response = await cl.GetStringAsync($"https://api.mojang.com/users/profiles/minecraft/{username}");
+            string response = await cl.GetStringAsync(new Uri($"https://api.mojang.com/users/profiles/minecraft/{username.NAME}"));
             JObject jsr = JObject.Parse(response);
             Hookins.MCObject jrop = new Hookins.MCObject();
             jrop.id = (string)jsr["id"];
