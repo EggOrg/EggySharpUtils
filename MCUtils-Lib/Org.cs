@@ -132,7 +132,6 @@ namespace MCUtils
         {
             public static Image CrafatarFromUUID(Hookins.MCPlayerObject mp, Enums.CrafatarImagingStyles st)
             {
-                Image ims = null;
                 WebClient wc = new WebClient();
                 byte[] av = { };
                 if (st == Enums.CrafatarImagingStyles.avatar)
@@ -153,7 +152,27 @@ namespace MCUtils
             }
             public static Image MinotarFromUsername(Hookins.MCNAME mp, Enums.MinotarImagingStyles st)
             {
-
+                WebClient wc = new WebClient();
+                byte[] av = { };
+                if (st == Enums.MinotarImagingStyles.avatar)
+                {
+                    av = wc.DownloadData($"https://minotar.net/helm/{mp.NAME}/100.png");
+                }
+                else if (st == Enums.MinotarImagingStyles.body)
+                {
+                    av = wc.DownloadData($"https://minotar.net/armor/body/{mp.NAME}/100.png");
+                }
+                else if (st == Enums.MinotarImagingStyles.bust)
+                {
+                    av = wc.DownloadData("https://minotar.net/armor/bust/{mp.NAME}/100.png");
+                }
+                else if (st == Enums.MinotarImagingStyles.cube)
+                {
+                    av = wc.DownloadData("https://minotar.net/cube/{mp.NAME}/100.png");
+                }
+                MemoryStream ms = new MemoryStream(av);
+                System.Drawing.Image ig = System.Drawing.Image.FromStream(ms);
+                return ig;
             }
             public static class Enums
             {
