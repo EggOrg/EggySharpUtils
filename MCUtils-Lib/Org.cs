@@ -128,7 +128,7 @@ namespace MCUtils
     }
     public static class Services
     {
-        public static class Imaging
+        public static class Skins
         {
             public static Image Crafatar(Hookins.MCPlayerObject mp, Enums.CrafatarImagingStyles st)
             {
@@ -200,24 +200,60 @@ namespace MCUtils
                 System.Drawing.Image ig = System.Drawing.Image.FromStream(ms);
                 return ig;
             }
-            public static class Enums
+        }
+        public static class Enums
+        {
+            public enum CrafatarImagingStyles
             {
-                public enum CrafatarImagingStyles
+                avatar,
+                body,
+                head,
+                skin,
+                cape
+            }
+            public enum MinotarImagingStyles
+            {
+                avatar,
+                cube,
+                body,
+                bust,
+                skin
+            }
+            public enum CapeServiceProvider
+            {
+                optifine,
+                minecraftcapes,
+                fivezig,
+            }
+        }
+        public static class Capes
+        {
+            public static Image GetCape(Hookins.MCPlayerObject mp, Enums.CapeServiceProvider cp)
+            {
+                WebClient wc = new WebClient();
+                byte[] av = { };
+                try
                 {
-                    avatar,
-                    body,
-                    head,
-                    skin,
-                    cape
+                    if (cp == Enums.CapeServiceProvider.optifine)
+                    {
+                        av = wc.DownloadData($"http://s.optifine.net/capes/{mp.name}.png");
+                    }
+                    else if (cp == Enums.CapeServiceProvider.minecraftcapes)
+                    {
+                        av = wc.DownloadData($"https://www.minecraftcapes.co.uk/getCape.php?u={mp.name}");
+                    }
+                    else if (cp == Enums.CapeServiceProvider.fivezig)
+                    {
+                        av = wc.DownloadData($"http://textures.5zig.net/textures/2/{mp.id}");
+                    }
                 }
-                public enum MinotarImagingStyles
+                catch (WebException er)
                 {
-                    avatar,
-                    cube,
-                    body,
-                    bust,
-                    skin
+                    throw new Exceptions.CapeGrabberExc($"An error has occured when grabbing a skin from {cp.ToString()}: {er.Message}. The user may not have a skin in this form.");
                 }
+                MemoryStream ms = new MemoryStream(av);
+                System.Drawing.Image ig = System.Drawing.Image.FromStream(ms);
+                return ig;
             }
         }
     }
@@ -248,6 +284,15 @@ namespace MCUtils
             public SkinGrabberExc(string message) : base(message) { }
             public SkinGrabberExc(string message, Exception inner) : base(message, inner) { }
             protected SkinGrabberExc(System.Runtime.Serialization.SerializationInfo info,
+                System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+        }
+        [Serializable]
+        public class CapeGrabberExc : Exception
+        {
+            public CapeGrabberExc() : base() { }
+            public CapeGrabberExc(string message) : base(message) { }
+            public CapeGrabberExc(string message, Exception inner) : base(message, inner) { }
+            protected CapeGrabberExc(System.Runtime.Serialization.SerializationInfo info,
                 System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
         }
     }
