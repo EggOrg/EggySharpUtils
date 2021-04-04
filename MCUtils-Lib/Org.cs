@@ -86,7 +86,7 @@ namespace MCUtils
             }
             catch (JsonReaderException er)
             {
-                throw new Exceptions.MojangParserExc($"An error has occurred while parsing MCPlayerObject information with Newtonsoft.JSON: {er.Message}");
+                throw new Exceptions.MojangParserExc($"An error has occurred while parsing MCPlayerObject information with Newtonsoft.JSON: {er.Message}. This may have been caused by an invalid username.");
             }
             if (!string.IsNullOrEmpty((string)jsr["error"]))
             {
@@ -117,7 +117,7 @@ namespace MCUtils
             }
             catch (JsonReaderException er)
             {
-                throw new Exceptions.MojangParserExc($"An error has occurred while parsing MCServiceObject information with Newtonsoft.JSON: {er.Message}");
+                throw new Exceptions.MojangParserExc($"An error has occurred while parsing MCServiceObject information with Newtonsoft.JSON: {er.Message}. This may have been caused by an invalid request.");
             }
             
             return jrop;
