@@ -38,7 +38,7 @@ namespace MCUtils
                 NAME = name;
             }
         }
-        
+
         /// <summary>
         /// An MCPlayerOBJECT to store data about a user (UUID, name).
         /// </summary>
@@ -65,21 +65,33 @@ namespace MCUtils
             public string mcmojangweb { get; set; }
         }
     }
-    public static class Convert
+    public static class Get
     {
         /// <summary>
         /// Converts an MCNAME to an MCObject.
         /// </summary>
         /// <param name="username">The MCNAME</param>
         /// <returns>MCObject</returns>
-        public static async Task<Hookins.MCPlayerObject> GetMCPlayerObject(Hookins.MCNAME username)
+        public static async Task<Hookins.MCPlayerObject> GetMCPlayerObject(this Hookins.MCNAME username)
         {
             HttpClient cl = new HttpClient();
             string response = await cl.GetStringAsync(new Uri($"https://api.mojang.com/users/profiles/minecraft/{username.NAME}"));
-            JObject jsr = JObject.Parse(response);
+            JObject jsr = new JObject();
             Hookins.MCPlayerObject jrop = new Hookins.MCPlayerObject();
-            jrop.id = (string)jsr["id"];
-            jrop.name = (string)jsr["name"];
+            try
+            {
+                jsr = JObject.Parse(response);
+                jrop.id = (string)jsr["id"];
+                jrop.name = (string)jsr["name"];
+            }
+            catch (JsonReaderException er)
+            {
+                throw new Exceptions.MojangParserExc($"An error has occurred while parsing MCPlayerObject information with Newtonsoft.JSON: {er.Message}");
+            }
+            if (!string.IsNullOrEmpty((string)jsr["error"]))
+            {
+                throw new Exceptions.MojangErrorExc($"An error has occurred while fetching MCPlayerObject information: {(string)jsr["error"]}");
+            }
             return jrop;
         }
 
@@ -87,19 +99,49 @@ namespace MCUtils
         {
             HttpClient cl = new HttpClient();
             string response = await cl.GetStringAsync(new Uri($"https://status.mojang.com/check"));
-            JObject jsr = JObject.Parse(response);
             Hookins.MCServiceObject jrop = new Hookins.MCServiceObject();
-            jrop.mcweb = (string)jsr["minecraft.net"];
-            jrop.mcsession = (string)jsr["session.minecraft.net"];
-            jrop.mcacc = (string)jsr["account.mojang.com"];
-            jrop.mcauth = (string)jsr["auth.mojang.com"];
-            jrop.mcskins = (string)jsr["skins.minecraft.net"];
-            jrop.mcauthserver = (string)jsr["authserver.mojang.com"];
-            jrop.mcsessionserver = (string)jsr["sessionserver.mojang.com"];
-            jrop.mcapi = (string)jsr["api.mojang.com"];
-            jrop.mctextures = (string)jsr["textures.minecraft.net"];
-            jrop.mcmojangweb = (string)jsr["mojang.com"];
+            JObject jsr = new JObject();
+            try
+            {
+                jsr = JObject.Parse(response);
+                jrop.mcweb = (string)jsr["minecraft.net"];
+                jrop.mcsession = (string)jsr["session.minecraft.net"];
+                jrop.mcacc = (string)jsr["account.mojang.com"];
+                jrop.mcauth = (string)jsr["auth.mojang.com"];
+                jrop.mcskins = (string)jsr["skins.minecraft.net"];
+                jrop.mcauthserver = (string)jsr["authserver.mojang.com"];
+                jrop.mcsessionserver = (string)jsr["sessionserver.mojang.com"];
+                jrop.mcapi = (string)jsr["api.mojang.com"];
+                jrop.mctextures = (string)jsr["textures.minecraft.net"];
+                jrop.mcmojangweb = (string)jsr["mojang.com"];
+            }
+            catch (JsonReaderException er)
+            {
+                throw new Exceptions.MojangParserExc($"An error has occurred while parsing MCServiceObject information with Newtonsoft.JSON: {er.Message}");
+            }
+            
             return jrop;
+        }
+    }
+    public class Exceptions
+    {
+        [Serializable]
+        public class MojangErrorExc : Exception
+        {
+            public MojangErrorExc() : base() { }
+            public MojangErrorExc(string message) : base(message) { }
+            public MojangErrorExc(string message, Exception inner) : base(message, inner) { }
+            protected MojangErrorExc(System.Runtime.Serialization.SerializationInfo info,
+                System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+        }
+        [Serializable]
+        public class MojangParserExc : Exception
+        {
+            public MojangParserExc() : base() { }
+            public MojangParserExc(string message) : base(message) { }
+            public MojangParserExc(string message, Exception inner) : base(message, inner) { }
+            protected MojangParserExc(System.Runtime.Serialization.SerializationInfo info,
+                System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
         }
     }
 }
