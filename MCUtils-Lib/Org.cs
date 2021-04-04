@@ -134,25 +134,32 @@ namespace MCUtils
             {
                 WebClient wc = new WebClient();
                 byte[] av = { };
-                if (st == Enums.CrafatarImagingStyles.avatar)
+                try
                 {
-                    av = wc.DownloadData($"https://crafatar.com/avatars/{mp.id}");
+                    if (st == Enums.CrafatarImagingStyles.avatar)
+                    {
+                        av = wc.DownloadData($"https://crafatar.com/avatars/{mp.id}");
+                    }
+                    else if (st == Enums.CrafatarImagingStyles.body)
+                    {
+                        av = wc.DownloadData($"https://crafatar.com/renders/body/{mp.id}");
+                    }
+                    else if (st == Enums.CrafatarImagingStyles.head)
+                    {
+                        av = wc.DownloadData($"https://crafatar.com/renders/head/{mp.id}");
+                    }
+                    else if (st == Enums.CrafatarImagingStyles.skin)
+                    {
+                        av = wc.DownloadData($"https://crafatar.com/skins/{mp.id}");
+                    }
+                    else if (st == Enums.CrafatarImagingStyles.cape)
+                    {
+                        av = wc.DownloadData($"https://crafatar.com/capes/{mp.id}");
+                    }
                 }
-                else if (st == Enums.CrafatarImagingStyles.body)
+                catch (WebException er)
                 {
-                    av = wc.DownloadData($"https://crafatar.com/renders/body/{mp.id}");
-                }
-                else if (st == Enums.CrafatarImagingStyles.head)
-                {
-                    av = wc.DownloadData($"https://crafatar.com/renders/head/{mp.id}");
-                }
-                else if (st == Enums.CrafatarImagingStyles.skin)
-                {
-                    av = wc.DownloadData($"https://crafatar.com/skins/{mp.id}");
-                }
-                else if (st == Enums.CrafatarImagingStyles.cape)
-                {
-                    av = wc.DownloadData($"https://crafatar.com/capes/{mp.id}");
+                    throw new Exceptions.SkinGrabberExc($"An error has occured while grabbing a skin from Crafatar API: {er.Message}. You may have been request-limited, or this username doesn't exist.");
                 }
                 MemoryStream ms = new MemoryStream(av);
                 System.Drawing.Image ig = System.Drawing.Image.FromStream(ms);
@@ -162,25 +169,32 @@ namespace MCUtils
             {
                 WebClient wc = new WebClient();
                 byte[] av = { };
-                if (st == Enums.MinotarImagingStyles.avatar)
+                try
                 {
-                    av = wc.DownloadData($"https://minotar.net/helm/{mp.name}/100.png");
+                    if (st == Enums.MinotarImagingStyles.avatar)
+                    {
+                        av = wc.DownloadData($"https://minotar.net/helm/{mp.name}/100.png");
+                    }
+                    else if (st == Enums.MinotarImagingStyles.body)
+                    {
+                        av = wc.DownloadData($"https://minotar.net/armor/body/{mp.name}/100.png");
+                    }
+                    else if (st == Enums.MinotarImagingStyles.bust)
+                    {
+                        av = wc.DownloadData($"https://minotar.net/armor/bust/{mp.name}/100.png");
+                    }
+                    else if (st == Enums.MinotarImagingStyles.cube)
+                    {
+                        av = wc.DownloadData($"https://minotar.net/cube/{mp.name}/100.png");
+                    }
+                    else if (st == Enums.MinotarImagingStyles.skin)
+                    {
+                        av = wc.DownloadData($"https://minotar.net/skin/{mp.name}");
+                    }
                 }
-                else if (st == Enums.MinotarImagingStyles.body)
+                catch (WebException er)
                 {
-                    av = wc.DownloadData($"https://minotar.net/armor/body/{mp.name}/100.png");
-                }
-                else if (st == Enums.MinotarImagingStyles.bust)
-                {
-                    av = wc.DownloadData($"https://minotar.net/armor/bust/{mp.name}/100.png");
-                }
-                else if (st == Enums.MinotarImagingStyles.cube)
-                {
-                    av = wc.DownloadData($"https://minotar.net/cube/{mp.name}/100.png");
-                }
-                else if (st == Enums.MinotarImagingStyles.skin)
-                {
-                    av = wc.DownloadData($"https://minotar.net/skin/{mp.name}");
+                    throw new Exceptions.SkinGrabberExc($"An error has occured while grabbing a skin from Minotar API: {er.Message}. You may have been request-limited, or this username doesn't exist.");
                 }
                 MemoryStream ms = new MemoryStream(av);
                 System.Drawing.Image ig = System.Drawing.Image.FromStream(ms);
@@ -225,6 +239,15 @@ namespace MCUtils
             public MojangParserExc(string message) : base(message) { }
             public MojangParserExc(string message, Exception inner) : base(message, inner) { }
             protected MojangParserExc(System.Runtime.Serialization.SerializationInfo info,
+                System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+        }
+        [Serializable]
+        public class SkinGrabberExc : Exception
+        {
+            public SkinGrabberExc() : base() { }
+            public SkinGrabberExc(string message) : base(message) { }
+            public SkinGrabberExc(string message, Exception inner) : base(message, inner) { }
+            protected SkinGrabberExc(System.Runtime.Serialization.SerializationInfo info,
                 System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
         }
     }
