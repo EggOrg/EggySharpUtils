@@ -144,7 +144,7 @@ namespace MCUtils
                 }
                 else if (st == Enums.CrafatarImagingStyles.head)
                 {
-                    av = wc.DownloadData("https://crafatar.com/renders/head/{mp.id}");
+                    av = wc.DownloadData($"https://crafatar.com/renders/head/{mp.id}");
                 }
                 MemoryStream ms = new MemoryStream(av);
                 System.Drawing.Image ig = System.Drawing.Image.FromStream(ms);
