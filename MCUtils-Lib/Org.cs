@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,7 +57,10 @@ namespace MCUtils
         {
             HttpClient cl = new HttpClient();
             string response = await cl.GetStringAsync($"https://api.mojang.com/users/profiles/minecraft/{username}");
-            Hookins.MCObject jrop = JsonConvert.DeserializeObject<Hookins.MCObject>(response);
+            JObject jsr = JObject.Parse(response);
+            Hookins.MCObject jrop = new Hookins.MCObject();
+            jrop.id = (string)jsr["id"];
+            jrop.name = (string)jsr["name"];
             return jrop;
         }
     }
