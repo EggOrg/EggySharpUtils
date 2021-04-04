@@ -7,6 +7,9 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing.Imaging;
+using System.Drawing;
+using System.IO;
 
 namespace MCUtils
 {
@@ -121,6 +124,53 @@ namespace MCUtils
             }
             
             return jrop;
+        }
+    }
+    public static class Services
+    {
+        public static class Imaging
+        {
+            public static Image CrafatarFromUUID(Hookins.MCPlayerObject mp, Enums.CrafatarImagingStyles st)
+            {
+                Image ims = null;
+                WebClient wc = new WebClient();
+                byte[] av = { };
+                if (st == Enums.CrafatarImagingStyles.avatar)
+                {
+                    av = wc.DownloadData($"https://crafatar.com/avatars/{mp.id}");
+                }
+                else if (st == Enums.CrafatarImagingStyles.body)
+                {
+                    av = wc.DownloadData($"https://crafatar.com/renders/body/{mp.id}");
+                }
+                else if (st == Enums.CrafatarImagingStyles.head)
+                {
+                    av = wc.DownloadData("https://crafatar.com/renders/head/{mp.id}");
+                }
+                MemoryStream ms = new MemoryStream(av);
+                System.Drawing.Image ig = System.Drawing.Image.FromStream(ms);
+                return ig;
+            }
+            public static Image MinotarFromUsername(Hookins.MCNAME mp, Enums.MinotarImagingStyles st)
+            {
+
+            }
+            public static class Enums
+            {
+                public enum CrafatarImagingStyles
+                {
+                    avatar,
+                    body,
+                    head
+                }
+                public enum MinotarImagingStyles
+                {
+                    avatar,
+                    cube,
+                    body,
+                    bust
+                }
+            }
         }
     }
     public class Exceptions
