@@ -238,6 +238,7 @@ namespace MCUtils
                 optifine,
                 minecraftcapes,
                 fivezig,
+                mcheads
             }
         }
         public static class Capes
@@ -259,6 +260,10 @@ namespace MCUtils
                     else if (cp == Enums.CapeServiceProvider.fivezig)
                     {
                         av = wc.DownloadData($"http://textures.5zig.net/textures/2/{mp.id}");
+                    }
+                    else if (cp == Enums.CapeServiceProvider.mcheads)
+                    {
+                        av = wc.DownloadData($"https://mc-heads.net/cape/{mp.id}");
                     }
                 }
                 catch (WebException er)
