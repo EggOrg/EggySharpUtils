@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCUtils-Lib", "MCUtils-Lib\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiLib", "ASCIILib\MultiLib.csproj", "{8B7987C7-4584-4DD6-99BA-992882DC5A1E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPApiSharp", "IPApiSharp\IPApiSharp.csproj", "{5C1431E5-2773-485B-B140-2F7FDCAAF835}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{8B7987C7-4584-4DD6-99BA-992882DC5A1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B7987C7-4584-4DD6-99BA-992882DC5A1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B7987C7-4584-4DD6-99BA-992882DC5A1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C1431E5-2773-485B-B140-2F7FDCAAF835}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C1431E5-2773-485B-B140-2F7FDCAAF835}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C1431E5-2773-485B-B140-2F7FDCAAF835}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C1431E5-2773-485B-B140-2F7FDCAAF835}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
