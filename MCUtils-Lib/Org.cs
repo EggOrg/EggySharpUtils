@@ -167,7 +167,7 @@ namespace MCUtils
                 }
                 catch (WebException er)
                 {
-                    throw new Exceptions.SkinGrabberExc($"An error has occured while grabbing a skin from Crafatar API: {er.Message}. You may have been request-limited, or this username doesn't exist.");
+                    throw new Exceptions.SkinGrabberExc($"An error has occurred while grabbing a skin from Crafatar API: {er.Message}. You may have been request-limited, or this username doesn't exist.");
                 }
                 MemoryStream ms = new MemoryStream(av);
                 System.Drawing.Image ig = System.Drawing.Image.FromStream(ms);
@@ -208,7 +208,7 @@ namespace MCUtils
                 }
                 catch (WebException er)
                 {
-                    throw new Exceptions.SkinGrabberExc($"An error has occured while grabbing a skin from Minotar API: {er.Message}. You may have been request-limited, or this username doesn't exist.");
+                    throw new Exceptions.SkinGrabberExc($"An error has occurred while grabbing a skin from Minotar API: {er.Message}. You may have been request-limited, or this username doesn't exist.");
                 }
                 MemoryStream ms = new MemoryStream(av);
                 System.Drawing.Image ig = System.Drawing.Image.FromStream(ms);
@@ -268,7 +268,7 @@ namespace MCUtils
                 }
                 catch (WebException er)
                 {
-                    throw new Exceptions.CapeGrabberExc($"An error has occured when grabbing a skin from {cp.ToString()}: {er.Message}. The user may not have a skin in this form.");
+                    throw new Exceptions.CapeGrabberExc($"An error has occurred when grabbing a cape from {cp.ToString()}: {er.Message}. The user may not have a cape in this form.");
                 }
                 MemoryStream ms = new MemoryStream(av);
                 System.Drawing.Image ig = System.Drawing.Image.FromStream(ms);
