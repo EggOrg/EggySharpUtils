@@ -31,18 +31,6 @@ namespace MCUtils
         }
 
         /// <summary>
-        /// An MCNAME to represent a name.
-        /// </summary>
-        public struct MCNAME
-        {
-            public string NAME { get; set; }
-            public MCNAME(string name)
-            {
-                NAME = name;
-            }
-        }
-
-        /// <summary>
         /// An MCPlayerOBJECT to store data about a user (UUID, name).
         /// </summary>
         public class MCPlayerObject
@@ -73,12 +61,12 @@ namespace MCUtils
         /// <summary>
         /// Converts an MCNAME to an MCObject.
         /// </summary>
-        /// <param name="username">The MCNAME</param>
+        /// <param name="username">The username of the player.</param>
         /// <returns>MCObject</returns>
-        public static async Task<Hookins.MCPlayerObject> GetMCPlayerObject(this Hookins.MCNAME username)
+        public static async Task<Hookins.MCPlayerObject> GetMCPlayerObject(this string username)
         {
             HttpClient cl = new HttpClient();
-            string response = await cl.GetStringAsync(new Uri($"https://api.mojang.com/users/profiles/minecraft/{username.NAME}"));
+            string response = await cl.GetStringAsync(new Uri($"https://api.mojang.com/users/profiles/minecraft/{username}"));
             JObject jsr = new JObject();
             Hookins.MCPlayerObject jrop = new Hookins.MCPlayerObject();
             try
