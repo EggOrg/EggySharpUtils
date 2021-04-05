@@ -97,7 +97,9 @@ namespace MCUtils
             }
             return jrop;
         }
-
+        /// <summary>
+        /// Returns a status of Minecraft/Mojang services.
+        /// </summary>
         public static async Task<Hookins.MCServiceObject> GetMCServiceObject()
         {
             HttpClient cl = new HttpClient();
@@ -130,6 +132,12 @@ namespace MCUtils
     {
         public static class Skins
         {
+            /// <summary>
+            /// Gets a skin from the Crafatar API.
+            /// </summary>
+            /// <param name="mp">MCPlayerObject that stores data of the player.</param>
+            /// <param name="st">The CrafatarSkinStyle to use.</param>
+            /// <returns>An image of the player head from Crafatar.</returns>
             public static Image Crafatar(Hookins.MCPlayerObject mp, Enums.CrafatarSkinsStyles st)
             {
                 WebClient wc = new WebClient();
@@ -165,6 +173,12 @@ namespace MCUtils
                 System.Drawing.Image ig = System.Drawing.Image.FromStream(ms);
                 return ig;
             }
+            /// <summary>
+            /// Gets a skin from the Minotar API.
+            /// </summary>
+            /// <param name="mp">MCPlayerObject that stores data of the player.</param>
+            /// <param name="st">The MinotarSkinStyle to use.</param>
+            /// <returns></returns>
             public static Image Minotar(Hookins.MCPlayerObject mp, Enums.MinotarSkinsStyles st)
             {
                 WebClient wc = new WebClient();
