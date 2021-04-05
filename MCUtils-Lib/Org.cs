@@ -7,7 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing.Imaging;
+using System.Drawing.Skins;
 using System.Drawing;
 using System.IO;
 
@@ -130,29 +130,29 @@ namespace MCUtils
     {
         public static class Skins
         {
-            public static Image Crafatar(Hookins.MCPlayerObject mp, Enums.CrafatarImagingStyles st)
+            public static Image Crafatar(Hookins.MCPlayerObject mp, Enums.CrafatarSkinsStyles st)
             {
                 WebClient wc = new WebClient();
                 byte[] av = { };
                 try
                 {
-                    if (st == Enums.CrafatarImagingStyles.avatar)
+                    if (st == Enums.CrafatarSkinsStyles.avatar)
                     {
                         av = wc.DownloadData($"https://crafatar.com/avatars/{mp.id}");
                     }
-                    else if (st == Enums.CrafatarImagingStyles.body)
+                    else if (st == Enums.CrafatarSkinsStyles.body)
                     {
                         av = wc.DownloadData($"https://crafatar.com/renders/body/{mp.id}");
                     }
-                    else if (st == Enums.CrafatarImagingStyles.head)
+                    else if (st == Enums.CrafatarSkinsStyles.head)
                     {
                         av = wc.DownloadData($"https://crafatar.com/renders/head/{mp.id}");
                     }
-                    else if (st == Enums.CrafatarImagingStyles.skin)
+                    else if (st == Enums.CrafatarSkinsStyles.skin)
                     {
                         av = wc.DownloadData($"https://crafatar.com/skins/{mp.id}");
                     }
-                    else if (st == Enums.CrafatarImagingStyles.cape)
+                    else if (st == Enums.CrafatarSkinsStyles.cape)
                     {
                         av = wc.DownloadData($"https://crafatar.com/capes/{mp.id}");
                     }
@@ -165,29 +165,29 @@ namespace MCUtils
                 System.Drawing.Image ig = System.Drawing.Image.FromStream(ms);
                 return ig;
             }
-            public static Image Minotar(Hookins.MCPlayerObject mp, Enums.MinotarImagingStyles st)
+            public static Image Minotar(Hookins.MCPlayerObject mp, Enums.MinotarSkinsStyles st)
             {
                 WebClient wc = new WebClient();
                 byte[] av = { };
                 try
                 {
-                    if (st == Enums.MinotarImagingStyles.avatar)
+                    if (st == Enums.MinotarSkinsStyles.avatar)
                     {
                         av = wc.DownloadData($"https://minotar.net/helm/{mp.name}/100.png");
                     }
-                    else if (st == Enums.MinotarImagingStyles.body)
+                    else if (st == Enums.MinotarSkinsStyles.body)
                     {
                         av = wc.DownloadData($"https://minotar.net/armor/body/{mp.name}/100.png");
                     }
-                    else if (st == Enums.MinotarImagingStyles.bust)
+                    else if (st == Enums.MinotarSkinsStyles.bust)
                     {
                         av = wc.DownloadData($"https://minotar.net/armor/bust/{mp.name}/100.png");
                     }
-                    else if (st == Enums.MinotarImagingStyles.cube)
+                    else if (st == Enums.MinotarSkinsStyles.cube)
                     {
                         av = wc.DownloadData($"https://minotar.net/cube/{mp.name}/100.png");
                     }
-                    else if (st == Enums.MinotarImagingStyles.skin)
+                    else if (st == Enums.MinotarSkinsStyles.skin)
                     {
                         av = wc.DownloadData($"https://minotar.net/skin/{mp.name}");
                     }
@@ -203,7 +203,7 @@ namespace MCUtils
         }
         public static class Enums
         {
-            public enum CrafatarImagingStyles
+            public enum CrafatarSkinsStyles
             {
                 avatar,
                 body,
@@ -211,7 +211,7 @@ namespace MCUtils
                 skin,
                 cape
             }
-            public enum MinotarImagingStyles
+            public enum MinotarSkinsStyles
             {
                 avatar,
                 cube,
