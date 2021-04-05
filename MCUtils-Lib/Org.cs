@@ -38,23 +38,6 @@ namespace MCUtils
             public string id { get; set; }
             public string name { get; set; }
         }
-
-        /// <summary>
-        /// MCServiceObject to store data about Minecraft servers.
-        /// </summary>
-        public class MCServiceObject
-        {
-            public string mcweb { get; set; }
-            public string mcsession { get; set; }
-            public string mcacc { get; set; }
-            public string mcauth { get; set; }
-            public string mcskins { get; set; }
-            public string mcauthserver { get; set; }
-            public string mcsessionserver { get; set; }
-            public string mcapi { get; set; }
-            public string mctextures { get; set; }
-            public string mcmojangweb { get; set; }
-        }
     }
     public static class Get
     {
@@ -83,36 +66,6 @@ namespace MCUtils
             {
                 throw new Exceptions.MojangErrorExc($"An error has occurred while fetching MCPlayerObject information: {(string)jsr["error"]}");
             }
-            return jrop;
-        }
-        /// <summary>
-        /// Returns a status of Minecraft/Mojang services.
-        /// </summary>
-        public static async Task<Hookins.MCServiceObject> GetMCServiceObject()
-        {
-            HttpClient cl = new HttpClient();
-            string response = await cl.GetStringAsync(new Uri($"https://status.mojang.com/check"));
-            Hookins.MCServiceObject jrop = new Hookins.MCServiceObject();
-            JObject jsr = new JObject();
-            try
-            {
-                jsr = JObject.Parse(response);
-                jrop.mcweb = (string)jsr["minecraft.net"];
-                jrop.mcsession = (string)jsr["session.minecraft.net"];
-                jrop.mcacc = (string)jsr["account.mojang.com"];
-                jrop.mcauth = (string)jsr["auth.mojang.com"];
-                jrop.mcskins = (string)jsr["skins.minecraft.net"];
-                jrop.mcauthserver = (string)jsr["authserver.mojang.com"];
-                jrop.mcsessionserver = (string)jsr["sessionserver.mojang.com"];
-                jrop.mcapi = (string)jsr["api.mojang.com"];
-                jrop.mctextures = (string)jsr["textures.minecraft.net"];
-                jrop.mcmojangweb = (string)jsr["mojang.com"];
-            }
-            catch (JsonReaderException er)
-            {
-                throw new Exceptions.MojangParserExc($"An error has occurred while parsing MCServiceObject information with Newtonsoft.JSON: {er.Message}. This may have been caused by an invalid request.");
-            }
-            
             return jrop;
         }
     }
