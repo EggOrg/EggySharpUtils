@@ -7,7 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing.Skins;
+using System.Drawing.Imaging;
 using System.Drawing;
 using System.IO;
 
