@@ -46,11 +46,7 @@ namespace IPApiSharp
             JObject jsr = new JObject();
             jsr = JObject.Parse(response);
             Str.IPStr jrop = new Str.IPStr();
-            if (jsr.Count < 21)
-            {
-                throw new Exception("Error finding all values. The IP address may be wrong.");
-            }
-            else
+            try
             {
                 jrop.Lat = (string)jsr["lat"];
                 jrop.Long = (string)jsr["lon"];
@@ -73,6 +69,10 @@ namespace IPApiSharp
                 jrop.Continent = (string)jsr["continent"];
                 jrop.ContinentCode = (string)jsr["continentCode"];
                 jrop.Status = (string)jsr["status"];
+            }
+            catch
+            {
+                throw new Exception($"Ran into an exception while parsing. Check the IP address.");
             }
             return jrop;
         }
