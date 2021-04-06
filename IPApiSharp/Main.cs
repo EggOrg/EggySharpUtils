@@ -39,6 +39,8 @@ namespace IPApiSharp
             public string ContinentCode { get; set; }
             public string Message { get; set; }
             public int Offset { get; set; }
+            public JObject JObject { get; set; }
+            public string Raw { get; set; }
         }
     }
     public class API
@@ -81,6 +83,8 @@ namespace IPApiSharp
             jrop.Continent = (string)jsr["continent"];
             jrop.ContinentCode = (string)jsr["continentCode"];
             jrop.Offset = (int)jsr["offset"];
+            jrop.JObject = jsr;
+            jrop.Raw = response;
             return jrop;
         }
     }
