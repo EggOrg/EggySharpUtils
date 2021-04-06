@@ -12,7 +12,7 @@ namespace ASCIILib
 {
     public class Artii
     {
-        public async Task<string> Get(string txt)
+        public static async Task<string> Get(string txt)
         {
             return await new HttpClient().GetStringAsync($"https://artii.herokuapp.com/make?text={txt.Replace(' ', '+')}");
         }
