@@ -11,7 +11,7 @@ Switch parser for console applications.
 Minecraft library for c#, to recieve player and server information. This also supports getting images of players from 2 sources (Crafatar, Minotar).
 
 ## ASCIILib
-Library for ascii art.
+Library for ascii art and printing strings.
 
 ## IPApiSharp
 Ip-Api wrapper for c#.
