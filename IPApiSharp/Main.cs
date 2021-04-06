@@ -17,8 +17,8 @@ namespace IPApiSharp
         public struct IPStr
         {
             public string Status { get; set; }
-            public string Lat { get; set; }
-            public string Long { get; set; }
+            public float Lat { get; set; }
+            public float Long { get; set; }
             public string Timezone { get; set; }
             public string Zip { get; set; }
             public string Isp { get; set; }
@@ -38,6 +38,7 @@ namespace IPApiSharp
             public string Continent { get; set; }
             public string ContinentCode { get; set; }
             public string Message { get; set; }
+            public int Offset { get; set; }
         }
     }
     public class API
@@ -59,8 +60,8 @@ namespace IPApiSharp
                 jrop.Message = (string)jsr["message"];
                 return jrop;
             }
-            jrop.Lat = (string)jsr["lat"];
-            jrop.Long = (string)jsr["lon"];
+            jrop.Lat = (float)jsr["lat"];
+            jrop.Long = (float)jsr["lon"];
             jrop.Zip = (string)jsr["zip"];
             jrop.Country = (string)jsr["country"];
             jrop.CountryCode = (string)jsr["countryCode"];
@@ -79,6 +80,7 @@ namespace IPApiSharp
             jrop.RegionName = (string)jsr["regionName"];
             jrop.Continent = (string)jsr["continent"];
             jrop.ContinentCode = (string)jsr["continentCode"];
+            jrop.Offset = (int)jsr["offset"];
             return jrop;
         }
     }
