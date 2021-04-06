@@ -53,6 +53,12 @@ namespace IPApiSharp
             JObject jsr = new JObject();
             jsr = JObject.Parse(response);
             Str.IPStr jrop = new Str.IPStr();
+            jrop.Status = (string)jsr["status"];
+            if (jrop.Status == "fail")
+            {
+                jrop.Message = (string)jsr["message"];
+                return jrop;
+            }
             jrop.Lat = (string)jsr["lat"];
             jrop.Long = (string)jsr["lon"];
             jrop.Zip = (string)jsr["zip"];
@@ -73,7 +79,6 @@ namespace IPApiSharp
             jrop.RegionName = (string)jsr["regionName"];
             jrop.Continent = (string)jsr["continent"];
             jrop.ContinentCode = (string)jsr["continentCode"];
-            jrop.Status = (string)jsr["status"];
             return jrop;
         }
     }
