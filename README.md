@@ -15,6 +15,9 @@ Library for ascii art.
 
 ## IPApiSharp
 Ip-Api wrapper for c#.
+
+## BUILD
+Build with <code>dotnet build</code> or with Visual Studio. I recommend Visual Studio.
 <br><br>
 <div align="center">
 <img src="https://img.shields.io/badge/EggOrg-by--acaiberii-green?style=for-the-badge">
