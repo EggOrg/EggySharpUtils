@@ -11,6 +11,9 @@ namespace IPApiSharp
 {
     public class Str
     {
+        /// <summary>
+        /// Stores data of an IP.
+        /// </summary>
         public struct IPStr
         {
             public string Status { get; set; }
@@ -39,6 +42,10 @@ namespace IPApiSharp
     }
     public class API
     {
+        /// <summary>
+        /// Gets IPStr from an IP asynchronously.
+        /// </summary>
+        /// <param name="source">Source IP.</param>
         public static async Task<Str.IPStr> Get(string source)
         {
             HttpClient cl = new HttpClient();
@@ -46,34 +53,27 @@ namespace IPApiSharp
             JObject jsr = new JObject();
             jsr = JObject.Parse(response);
             Str.IPStr jrop = new Str.IPStr();
-            try
-            {
-                jrop.Lat = (string)jsr["lat"];
-                jrop.Long = (string)jsr["lon"];
-                jrop.Zip = (string)jsr["zip"];
-                jrop.Country = (string)jsr["country"];
-                jrop.CountryCode = (string)jsr["countryCode"];
-                jrop.As = (string)jsr["as"];
-                jrop.Org = (string)jsr["org"];
-                jrop.Isp = (string)jsr["isp"];
-                jrop.Timezone = (string)jsr["timezone"];
-                jrop.City = (string)jsr["city"];
-                jrop.Query = (string)jsr["query"];
-                jrop.Asname = (string)jsr["asname"];
-                jrop.Reverse = (string)jsr["reverse"];
-                jrop.District = (string)jsr["district"];
-                jrop.Mobile = (bool)jsr["mobile"];
-                jrop.Hosting = (bool)jsr["hosting"];
-                jrop.Proxy = (bool)jsr["proxy"];
-                jrop.RegionName = (string)jsr["regionName"];
-                jrop.Continent = (string)jsr["continent"];
-                jrop.ContinentCode = (string)jsr["continentCode"];
-                jrop.Status = (string)jsr["status"];
-            }
-            catch
-            {
-                throw new Exception($"Ran into an exception while parsing. Check the IP address.");
-            }
+            jrop.Lat = (string)jsr["lat"];
+            jrop.Long = (string)jsr["lon"];
+            jrop.Zip = (string)jsr["zip"];
+            jrop.Country = (string)jsr["country"];
+            jrop.CountryCode = (string)jsr["countryCode"];
+            jrop.As = (string)jsr["as"];
+            jrop.Org = (string)jsr["org"];
+            jrop.Isp = (string)jsr["isp"];
+            jrop.Timezone = (string)jsr["timezone"];
+            jrop.City = (string)jsr["city"];
+            jrop.Query = (string)jsr["query"];
+            jrop.Asname = (string)jsr["asname"];
+            jrop.Reverse = (string)jsr["reverse"];
+            jrop.District = (string)jsr["district"];
+            jrop.Mobile = (bool)jsr["mobile"];
+            jrop.Hosting = (bool)jsr["hosting"];
+            jrop.Proxy = (bool)jsr["proxy"];
+            jrop.RegionName = (string)jsr["regionName"];
+            jrop.Continent = (string)jsr["continent"];
+            jrop.ContinentCode = (string)jsr["continentCode"];
+            jrop.Status = (string)jsr["status"];
             return jrop;
         }
     }
