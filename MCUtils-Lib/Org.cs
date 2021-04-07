@@ -256,4 +256,11 @@ namespace MCUtils
                 System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
         }
     }
+    public static class Servers
+    {
+        public static string GetServerJson(string ip)
+        {
+            return new WebClient().DownloadString($"https://api.mcsrvstat.us/2/{ip}");
+        }
+    }
 }
