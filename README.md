@@ -16,6 +16,9 @@ Library for ascii art and printing strings.
 ## IPApiSharp
 Ip-Api wrapper for c#.
 
+## RINIT
+A language to initialize or batch-initialize files. This is the parser.
+
 ## BUILD
 Build with <code>dotnet build</code> or with Visual Studio. I recommend Visual Studio.
 <br><br>
