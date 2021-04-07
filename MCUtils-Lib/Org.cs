@@ -38,6 +38,18 @@ namespace MCUtils
             public string id { get; set; }
             public string name { get; set; }
         }
+
+        public class MCServiceObject
+        {
+            public string MCWeb { get; set; }
+            public string MCSession { get; set; }
+            public string MCAcc { get; set; }
+            public string MCAuthServer { get; set; }
+            public string MCSessionServer { get; set; }
+            public string MCTextures { get; set; }
+            public string MojangAPI { get; set; }
+            public string MojangWeb { get; set; }
+        }
     }
     public static class Get
     {
@@ -67,6 +79,21 @@ namespace MCUtils
                 throw new Exceptions.MojangErrorExc($"An error has occurred while fetching MCPlayerObject information: {(string)jsr["error"]}");
             }
             return jrop;
+        }
+        public static async Task<Hookins.MCServiceObject> GetMCServiceObject()
+        {
+            HttpClient cl = new HttpClient();
+            string response = await cl.GetStringAsync($"https://status.mojang.com/check");
+            JArray jr = JArray.Parse(response);
+            Hookins.MCServiceObject mcs = new Hookins.MCServiceObject();
+            mcs.MCWeb = (string)jr["minecraft.net"];
+            mcs.MCSession = (string)jr["session.minecraft.net"];
+            mcs.MCAcc = (string)jr["session.minecraft.net"];
+            mcs.MCAuthServer = (string)jr["authserver.mojang.com"];
+            mcs.MCSessionServer = (string)jr["sessionserver.mojang.com"];
+            mcs.MojangAPI = (string)jr["api.mojang.com"];
+            mcs.MCTextures = (string)jr["textures.minecraft.net"];
+            mcs.MojangWeb = (string)jr["mojang.com"];
         }
     }
     public static class Services
