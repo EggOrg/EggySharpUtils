@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace RINIT
     {
         public Rini.ParsedRinitFile Parse(Rini.RinitFile rn)
         {
-            return new Rini.ParsedRinitFile(rn.FullRinit.Replace("@RinitFile[<-", string.Empty).Replace("->]", string.Empty).Split(new string[] { "$-!" }, StringSplitOptions.None));
+            return new Rini.ParsedRinitFile(new StreamReader(rn.FullRinit).ReadToEnd().Replace("@RinitFile[<-", string.Empty).Replace("->]", string.Empty).Split(new string[] { "$-!" }, StringSplitOptions.None));
         }
     }
     public class Rini
@@ -31,9 +32,9 @@ namespace RINIT
             }
         }
     }
-    public class RiniStart
+    public static class RiniStart
     {
-        public void Start(Rini.ParsedRinitFile rf)
+        public static void Start(Rini.ParsedRinitFile rf)
         {
             foreach (string str in rf.FullParsedRinit)
             {
