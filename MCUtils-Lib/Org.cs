@@ -45,7 +45,7 @@ namespace MCUtils
         /// Converts an MCNAME to an MCObject.
         /// </summary>
         /// <param name="username">The username of the player.</param>
-        /// <returns>MCObject</returns>
+        /// <returns>MCPlayerObject</returns>
         public static async Task<Hookins.MCPlayerObject> GetMCPlayerObject(this string username)
         {
             HttpClient cl = new HttpClient();
