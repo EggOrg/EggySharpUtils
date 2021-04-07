@@ -9,37 +9,27 @@ namespace RINIT
 {
     public class ParsingEngine
     {
-        public Rini.ParsedRinitFile Parse(Rini.RinitFile rn)
+        public List<string[]> Parse(string rinit)
         {
-            return new Rini.ParsedRinitFile(new StreamReader(rn.FullRinit).ReadToEnd().Replace("@RinitFile[<-", string.Empty).Replace("->]", string.Empty).Split(','));
+            List<string[]> strs = new List<string[]>();
+            string[] rnf = rinit.Replace("@RinitFile[<-", string.Empty).Replace("->]", string.Empty).Split(',');
+            foreach (string rnfkey in rnf)
+            {
+                string[] keyh = rnfkey.Split('-');
+                strs.Add(keyh);
+            }
+            return strs;
         }
-    }
-    public class Rini
-    {
-        public struct RinitFile
+        public List<string[]> Parse(Stream rinitpath)
         {
-            public string FullRinit { get; set; }
-            public RinitFile(string rinit)
+            List<string[]> strs = new List<string[]>();
+            string[] rnf = new StreamReader(rinitpath).ReadToEnd().Replace("@RinitFile[<-", string.Empty).Replace("->]", string.Empty).Split(',');
+            foreach (string rnfkey in rnf)
             {
-                FullRinit = rinit;
+                string[] keyh = rnfkey.Split('-');
+                strs.Add(keyh);
             }
-        }
-        public struct ParsedRinitFile {
-            public string[] FullParsedRinit { get; set; }
-            public ParsedRinitFile(string[] parsedrinit)
-            {
-                FullParsedRinit = parsedrinit;
-            }
-        }
-    }
-    public static class RiniStart
-    {
-        public static void Start(Rini.ParsedRinitFile rf)
-        {
-            foreach (string str in rf.FullParsedRinit)
-            {
-                System.Diagnostics.Process.Start(str);
-            }
+            return strs;
         }
     }
 }
