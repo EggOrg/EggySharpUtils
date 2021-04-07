@@ -11,7 +11,7 @@ namespace RINIT
     {
         public Rini.ParsedRinitFile Parse(Rini.RinitFile rn)
         {
-            return new Rini.ParsedRinitFile(new StreamReader(rn.FullRinit).ReadToEnd().Replace("@RinitFile[<-", string.Empty).Replace("->]", string.Empty).Split(new string[] { "$-!" }, StringSplitOptions.None));
+            return new Rini.ParsedRinitFile(new StreamReader(rn.FullRinit).ReadToEnd().Replace("@RinitFile[<-", string.Empty).Replace("->]", string.Empty).Split(','));
         }
     }
     public class Rini
