@@ -10,7 +10,7 @@ namespace RINIT
     {
         public Rini.ParsedRinitFile Parse(Rini.RinitFile rn)
         {
-            return new Rini.ParsedRinitFile(rn.FullRinit.Replace("@RINIT[<-", string.Empty).Replace("->]", string.Empty));
+            return new Rini.ParsedRinitFile(rn.FullRinit.Replace("@RinitFile[<-", string.Empty).Replace("->]", string.Empty).Split(new string[] { "$-!" }, StringSplitOptions.None));
         }
     }
     public class Rini
@@ -24,8 +24,8 @@ namespace RINIT
             }
         }
         public struct ParsedRinitFile {
-            public string FullParsedRinit { get; set; }
-            public ParsedRinitFile(string parsedrinit)
+            public string[] FullParsedRinit { get; set; }
+            public ParsedRinitFile(string[] parsedrinit)
             {
                 FullParsedRinit = parsedrinit;
             }
@@ -35,7 +35,10 @@ namespace RINIT
     {
         public void Start(Rini.ParsedRinitFile rf)
         {
-            System.Diagnostics.Process.Start(rf.FullParsedRinit);
+            foreach (string str in rf.FullParsedRinit)
+            {
+                System.Diagnostics.Process.Start(str);
+            }
         }
     }
 }
