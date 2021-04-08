@@ -59,8 +59,7 @@ namespace IPApiSharp
             jrop.Status = (string)jsr["status"];
             if (jrop.Status == "fail")
             {
-                jrop.Message = (string)jsr["message"];
-                return jrop;
+                throw new IPApiException((string)jsr["message"]);
             }
             jrop.Lat = (float)jsr["lat"];
             jrop.Long = (float)jsr["lon"];
@@ -86,6 +85,20 @@ namespace IPApiSharp
             jrop.JObject = jsr;
             jrop.Raw = response;
             return jrop;
+        }
+    }
+    [Serializable]
+    public class IPApiException : Exception
+    {
+        public IPApiException(string message)
+            : base($@"An error has occured while fetching IP info: {message}") => Utils.Pass();
+
+    }
+    public static class Utils
+    {
+        public static void Pass()
+        {
+
         }
     }
 }
