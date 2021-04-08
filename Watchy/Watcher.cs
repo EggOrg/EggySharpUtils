@@ -9,12 +9,11 @@ namespace Watchy
 {
     public class Watcher
     {
-        public async Task<List<string>> GetUpdate(Str.FileWatcher root)
+        public List<string> GetUpdate(Str.FileWatcher root)
         {
             List<string> r = root.oldfiles;
             List<string> updated = new List<string>();
-            await Task.Delay(1000);
-            List<string> ur = await GetFilesUpdate(root.root);
+            List<string> ur = GetFilesUpdate(root.root);
             if (r != ur)
             {
                     
@@ -31,7 +30,7 @@ namespace Watchy
             }
             return updated;
         }
-        public static async Task<List<string>> GetFilesUpdate(string rootPath, List<string> alreadyFound = null)
+        public static List<string> GetFilesUpdate(string rootPath, List<string> alreadyFound = null)
         {
             if (alreadyFound == null) alreadyFound = new List<string>();
             DirectoryInfo di = new DirectoryInfo(rootPath);
@@ -40,7 +39,7 @@ namespace Watchy
             {
                 if (!((dir.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden))
                 {
-                    alreadyFound = await GetFilesUpdate(dir.FullName, alreadyFound);
+                    alreadyFound = GetFilesUpdate(dir.FullName, alreadyFound);
                 }
             }
             var files = Directory.GetFiles(rootPath);
@@ -57,10 +56,10 @@ namespace Watchy
         {
             public List<string> oldfiles { get; set; }
             public string root { get; set; }
-            public async void Initialize(string rootp)
+            public void Initialize(string rootp)
             {
                 root = rootp;
-                oldfiles = await Watcher.GetFilesUpdate(rootp);
+                oldfiles = Watcher.GetFilesUpdate(rootp);
             }
         }
     }

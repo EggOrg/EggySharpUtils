@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPApiSharp", "IPApiSharp\IP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RINIT", "RINIT\RINIT.csproj", "{0B341991-FD32-483E-BC8D-5BD28CE7FE6A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Watchy", "Watchy\Watchy.csproj", "{504973D2-EC90-4434-BF91-B9E302A20AEB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{0B341991-FD32-483E-BC8D-5BD28CE7FE6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B341991-FD32-483E-BC8D-5BD28CE7FE6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B341991-FD32-483E-BC8D-5BD28CE7FE6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{504973D2-EC90-4434-BF91-B9E302A20AEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{504973D2-EC90-4434-BF91-B9E302A20AEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{504973D2-EC90-4434-BF91-B9E302A20AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{504973D2-EC90-4434-BF91-B9E302A20AEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
