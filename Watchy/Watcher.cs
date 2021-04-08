@@ -9,7 +9,7 @@ namespace Watchy
 {
     public class Watcher
     {
-        public async Task<List<string>> Get(Str.FileWatcher root)
+        public async Task<List<string>> GetUpdate(Str.FileWatcher root)
         {
             List<string> r = root.oldfiles;
             List<string> updated = new List<string>();
