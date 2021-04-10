@@ -17,7 +17,9 @@ namespace PasteSharp
                 { "api_paste_code", cnt.content },
                 { "api_user_key", cnt.userkey },
                 { "api_paste_private", cnt.visibility },
-                { "api_paste_name", cnt.title }
+                { "api_paste_name", cnt.title },
+                { "api_paste_expire_date", cnt.expdate },
+                { "api_paste_format",  cnt.format }
             };
             HttpClient hts = new HttpClient();
             var rsp = await (await hts.PostAsync("https://pastebin.com/api/api_post.php", new FormUrlEncodedContent(dsr))).Content.ReadAsStringAsync();
@@ -41,13 +43,15 @@ namespace PasteSharp
             public string visibility { get; set; }
             public string format { get; set; }
             public string userkey { get; set; }
-            public PastebinContent(string cnt, string vis, string form, string usk, string ttl)
+            public string expdate { get; set; }
+            public PastebinContent(string cnt, string vis, string form, string usk, string ttl, string exp)
             {
                 content = cnt;
                 visibility = vis;
                 format = form;
                 userkey = usk;
                 title = ttl;
+                expdate = exp;
             }
         }
     }
