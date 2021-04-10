@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RINIT", "RINIT\RINIT.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Watchy", "Watchy\Watchy.csproj", "{504973D2-EC90-4434-BF91-B9E302A20AEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitSharp", "GitSharp\GitSharp.csproj", "{94C4AEAD-E11D-404D-B649-146687779572}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCLogsSharp", "MCLogsSharp\MCLogsSharp.csproj", "{1BFC872C-2C8B-49FC-A5F6-7A04715F0BF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{504973D2-EC90-4434-BF91-B9E302A20AEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{504973D2-EC90-4434-BF91-B9E302A20AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{504973D2-EC90-4434-BF91-B9E302A20AEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94C4AEAD-E11D-404D-B649-146687779572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94C4AEAD-E11D-404D-B649-146687779572}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94C4AEAD-E11D-404D-B649-146687779572}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94C4AEAD-E11D-404D-B649-146687779572}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BFC872C-2C8B-49FC-A5F6-7A04715F0BF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BFC872C-2C8B-49FC-A5F6-7A04715F0BF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BFC872C-2C8B-49FC-A5F6-7A04715F0BF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BFC872C-2C8B-49FC-A5F6-7A04715F0BF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
