@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitSharp", "GitSharp\GitSha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteSharp", "PasteSharp\PasteSharp.csproj", "{FDBC37E2-F65F-427C-9AD3-B1E5EA112CA3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoolNav", "CoolNav\CoolNav.csproj", "{4ECB0190-4AE8-475D-B62B-D3890CD18516}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{FDBC37E2-F65F-427C-9AD3-B1E5EA112CA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDBC37E2-F65F-427C-9AD3-B1E5EA112CA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDBC37E2-F65F-427C-9AD3-B1E5EA112CA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ECB0190-4AE8-475D-B62B-D3890CD18516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ECB0190-4AE8-475D-B62B-D3890CD18516}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ECB0190-4AE8-475D-B62B-D3890CD18516}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ECB0190-4AE8-475D-B62B-D3890CD18516}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
