@@ -9,37 +9,20 @@ namespace CoolNav
     public class ConsoleNavEngine
     {
         public bool isbroken = false;
-        public string Initialize(Str.ConsoleNavKeys keys, string[] choices, ConsoleColor selbg)
+        public string[] c;
+        public Str.ConsoleNavKeys k;
+        public ConsoleColor bg;
+        public int sel = 0;
+        public void Initialize(Str.ConsoleNavKeys keys, string[] choices, ConsoleColor selbg)
         {
             int sel = 0;
             foreach (string choice in choices)
             {
                 Console.WriteLine($"> {choice}");
             }
-            while (isbroken == false)
-            {
-                if (Console.KeyAvailable && Console.ReadKey(true).Key == keys.up)
-                {
-                    if (sel != 0)
-                    {
-                        sel -= 1;
-                        Rewrite(choices, sel, selbg);
-                    }
-                }
-                else if (Console.KeyAvailable && Console.ReadKey(true).Key == keys.down)
-                {
-                    if (sel != choices.Length)
-                    {
-                        sel += 1;
-                        Rewrite(choices, sel, selbg);
-                    }
-                }
-                else if (Console.KeyAvailable && Console.ReadKey(true).Key == keys.enter)
-                {
-                    return choices[sel];
-                }
-            }
-            return "Selection broken!";
+            c = choices;
+            k = keys;
+            bg = selbg;
         }
         public void Break()
         {
@@ -64,6 +47,44 @@ namespace CoolNav
                     Console.WriteLine(">" + value);
                 }
             }
+        }
+        public string Listen(ConsoleNavEngine cn)
+        {
+            while (isbroken == false)
+            {
+                if (Console.KeyAvailable && Console.ReadKey(true).Key == k.up)
+                {
+                    if (sel != 0)
+                    {
+                        sel -= 1;
+                        Rewrite(c, sel, bg);
+                    }
+                }
+                else if (Console.KeyAvailable && Console.ReadKey(true).Key == k.down)
+                {
+                    if (sel < c.Length)
+                    {
+                        sel += 1;
+                        Rewrite(c, sel, bg);
+                    }
+                    else if (sel == c.Length)
+                    {
+                        sel = c.Length;
+                    }
+                }
+                else if (Console.KeyAvailable && Console.ReadKey(true).Key == k.enter)
+                {
+                    return c[sel];
+                }
+            }
+            return "broken";
+        }
+        private static void ClearCurrentConsoleLine()
+        {
+            int currentLineCursor = Console.CursorTop;
+            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, currentLineCursor);
         }
     }
     public class Str
