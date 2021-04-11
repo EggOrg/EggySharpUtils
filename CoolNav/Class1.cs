@@ -50,8 +50,8 @@ namespace CoolNav
             }
             else if (sty == Str.ConsoleNavStyle.bullets)
             {
-                ch = "o";
-                sch = "•";
+                ch = "o ";
+                sch = "o  ";
             }
             Console.Clear();
             ConsoleColor origbg = Console.BackgroundColor;
@@ -101,13 +101,6 @@ namespace CoolNav
                 }
             }
             return "broken";
-        }
-        private static void ClearCurrentConsoleLine()
-        {
-            int currentLineCursor = Console.CursorTop;
-            Console.SetCursorPosition(0, Console.CursorTop);
-            Console.Write(new string(' ', Console.WindowWidth));
-            Console.SetCursorPosition(0, currentLineCursor);
         }
     }
     public class Str
