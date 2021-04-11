@@ -25,7 +25,11 @@ namespace CoolNav
             }
             else if (sr == Str.ConsoleNavStyle.bullets)
             {
-                ch = "•";
+                ch = "o ";
+            }
+            else if (sr == Str.ConsoleNavStyle.space)
+            {
+                ch = " ";
             }
             foreach (string choice in choices)
             {
@@ -52,6 +56,11 @@ namespace CoolNav
             {
                 ch = "o ";
                 sch = "o  ";
+            }
+            else if (sty == Str.ConsoleNavStyle.space)
+            {
+                ch = " ";
+                sch = "   ";
             }
             Console.Clear();
             ConsoleColor origbg = Console.BackgroundColor;
@@ -120,7 +129,8 @@ namespace CoolNav
         public enum ConsoleNavStyle
         {
             arrows,
-            bullets
+            bullets,
+            space
         }
     }
 }
