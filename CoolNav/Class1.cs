@@ -47,6 +47,7 @@ namespace CoolNav
         }
         private void Rewrite(string[] choices, int choiced, ConsoleColor selbg)
         {
+            Console.Clear();
             ConsoleColor origbg = Console.BackgroundColor;
             foreach (var item in choices.Select((value, i) => new { i, value }))
             {
