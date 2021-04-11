@@ -13,12 +13,23 @@ namespace CoolNav
         public Str.ConsoleNavKeys k;
         public ConsoleColor bg;
         public int sel = 0;
-        public void Initialize(Str.ConsoleNavKeys keys, string[] choices, ConsoleColor selbg)
+        public Str.ConsoleNavStyle cns;
+        public void Initialize(Str.ConsoleNavKeys keys, string[] choices, ConsoleColor selbg, Str.ConsoleNavStyle sr)
         {
+            cns = sr;
             int sel = 0;
+            string ch = "";
+            if (sr == Str.ConsoleNavStyle.arrows)
+            {
+                ch = ">";
+            }
+            else if (sr == Str.ConsoleNavStyle.bullets)
+            {
+                ch = "•";
+            }
             foreach (string choice in choices)
             {
-                Console.WriteLine($"> {choice}");
+                Console.WriteLine($"{ch} {choice}");
             }
             c = choices;
             k = keys;
@@ -28,8 +39,20 @@ namespace CoolNav
         {
             isbroken = true;
         }
-        private void Rewrite(string[] choices, int choiced, ConsoleColor selbg)
+        private void Rewrite(string[] choices, int choiced, ConsoleColor selbg, Str.ConsoleNavStyle sty)
         {
+            string ch = "";
+            string sch = "";
+            if (sty == Str.ConsoleNavStyle.arrows)
+            {
+                ch = ">";
+                sch = "<";
+            }
+            else if (sty == Str.ConsoleNavStyle.bullets)
+            {
+                ch = "o";
+                sch = "•";
+            }
             Console.Clear();
             ConsoleColor origbg = Console.BackgroundColor;
             foreach (var item in choices.Select((value, i) => new { i, value }))
@@ -39,12 +62,12 @@ namespace CoolNav
                 if (index == choiced)
                 {
                     Console.BackgroundColor = selbg;
-                    Console.WriteLine("<" + value);
+                    Console.WriteLine(sch + value);
                     Console.BackgroundColor = origbg;
                 }
                 else
                 {
-                    Console.WriteLine(">" + value);
+                    Console.WriteLine(ch + value);
                 }
             }
         }
@@ -57,7 +80,7 @@ namespace CoolNav
                     if (sel != 0)
                     {
                         sel -= 1;
-                        Rewrite(c, sel, bg);
+                        Rewrite(c, sel, bg, cns);
                     }
                 }
                 else if (Console.KeyAvailable && Console.ReadKey(true).Key == k.down)
@@ -65,7 +88,7 @@ namespace CoolNav
                     if (sel < c.Length)
                     {
                         sel += 1;
-                        Rewrite(c, sel, bg);
+                        Rewrite(c, sel, bg, cns);
                     }
                     else if (sel == c.Length)
                     {
@@ -100,6 +123,11 @@ namespace CoolNav
                 down = d;
                 enter = r;
             }
+        }
+        public enum ConsoleNavStyle
+        {
+            arrows,
+            bullets
         }
     }
 }
