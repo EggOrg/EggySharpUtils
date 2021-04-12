@@ -171,6 +171,7 @@ namespace CoolNav
     {
         public string Initialize(string[] choices, ConsoleColor backcolor)
         {
+            List<string> parsed = new List<string>();
             foreach (string choice in choices)
             {
                 Console.WriteLine($"- {choice}");
@@ -181,7 +182,7 @@ namespace CoolNav
                 Console.Clear();
                 foreach (string choice in choices)
                 {
-                    if (choice.Contains(ans))
+                    if (choice.Equals(ans))
                     {
                         Console.BackgroundColor = backcolor;
                         Console.WriteLine($"-   {choice}");
@@ -194,6 +195,25 @@ namespace CoolNav
                 }
             }
             return ans;
+        }
+    }
+    public class ConsoleLoadingEngine
+    {
+        public void Initialize(int value, int delay)
+        {
+            Console.Write("|");
+            Console.BackgroundColor = ConsoleColor.White;
+            Util.RepeatAction(value / 10, async () => { await Task.Delay(delay);  Console.Write(" "); });
+            Console.ResetColor();
+            Console.Write("|");
+        }
+    }
+    public class Util
+    {
+        public static void RepeatAction(int repeatCount, Action action)
+        {
+            for (int i = 0; i < repeatCount; i++)
+                action();
         }
     }
     public class Str
