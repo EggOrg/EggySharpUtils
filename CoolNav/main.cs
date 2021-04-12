@@ -199,11 +199,17 @@ namespace CoolNav
     }
     public class ConsoleLoadingEngine
     {
-        public void Initialize(int value, int delay)
+        public void Initialize()
         {
             Console.Write("|");
             Console.BackgroundColor = ConsoleColor.White;
-            Util.RepeatAction(value / 10,  () => { Thread.Sleep(delay);  Console.Write(" "); });
+        }
+        public void Add(int value, int delay)
+        {
+            Util.RepeatAction(value / 10, () => { Thread.Sleep(delay); Console.Write(" "); });
+        }
+        public void Close()
+        {
             Console.ResetColor();
             Console.Write("|");
         }
