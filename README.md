@@ -2,7 +2,7 @@
 Utilities for c# applications.
 
 ## DevUp
-Package manager for developers. Only includes Gradle as of now.
+Package manager for developers. Only includes Gradle and Eclipse IDE as of now.
 
 ## EggySwitch
 Switch parser for console applications.
@@ -18,6 +18,12 @@ Ip-Api wrapper for c#.
 
 ## RINIT
 A language to initialize or batch-initialize files. This is the parser.
+
+## CoolNav
+TUI (Terminal UI) toolkit for c#.net projects.
+
+## MCLogsSharp
+mclo.gs wrapper for c#.
 
 ## BUILD
 Build with <code>dotnet build</code> or with Visual Studio. I recommend Visual Studio.
