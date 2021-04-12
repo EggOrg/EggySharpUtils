@@ -25,6 +25,12 @@ TUI (Terminal UI) toolkit for c#.net projects.
 ## MCLogsSharp
 mclo.gs wrapper for c#.
 
+## Most useful and devloped libraries
+CoolNav - design and features.
+MCUtils-Lib - Skins, capes, and parsing systems.
+RINIT - Language parsing system.
+IPApiSharp - Parsing system.
+
 ## BUILD
 Build with <code>dotnet build</code> or with Visual Studio. I recommend Visual Studio.
 <br><br>
