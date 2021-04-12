@@ -184,7 +184,7 @@ namespace CoolNav
                     if (choice.Contains(ans))
                     {
                         Console.BackgroundColor = backcolor;
-                        Console.WriteLine($"-  {choice}");
+                        Console.WriteLine($"-   {choice}");
                         Console.ResetColor();
                     }
                     else
