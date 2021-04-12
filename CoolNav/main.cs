@@ -176,13 +176,13 @@ namespace CoolNav
             {
                 Console.WriteLine($"- {choice}");
             }
-            string ans = Console.ReadLine();
-            if (choices.Contains<string>(ans))
+            string h = Console.ReadLine();
+            if (choices.Contains<string>(h))
             {
                 Console.Clear();
                 foreach (string choice in choices)
                 {
-                    if (choice.Equals(ans))
+                    if (choice.Contains(h))
                     {
                         Console.BackgroundColor = backcolor;
                         Console.WriteLine($"-   {choice}");
@@ -194,7 +194,7 @@ namespace CoolNav
                     }
                 }
             }
-            return ans;
+            return h;
         }
     }
     public class ConsoleLoadingEngine
