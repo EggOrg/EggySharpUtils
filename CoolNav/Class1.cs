@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using static CoolNav.Str;
 
 namespace CoolNav
 {
@@ -30,6 +32,10 @@ namespace CoolNav
             else if (sr == Str.ConsoleNavStyle.space)
             {
                 ch = " ";
+            }
+            else if (sr == Str.ConsoleNavStyle.dash)
+            {
+                ch = "-";
             }
             foreach (string choice in choices)
             {
@@ -61,6 +67,11 @@ namespace CoolNav
             {
                 ch = " ";
                 sch = "   ";
+            }
+            else if (sty == Str.ConsoleNavStyle.dash)
+            {
+                ch = "-";
+                sch = "- ";
             }
             Console.Clear();
             ConsoleColor origbg = Console.BackgroundColor;
@@ -112,6 +123,29 @@ namespace CoolNav
             return "broken";
         }
     }
+    public class ConsoleInputEngine
+    {
+        public bool isbroken = false;
+        public string Initialize(string desired, ConsoleInputKeys ky)
+        {
+            string pass = "";
+            Console.Write("<");
+            foreach (char c in desired)
+            {
+                Console.Write("*");
+                ConsoleKeyInfo ck = Console.ReadKey();
+                Console.Write("\b");
+                pass += ck.KeyChar;
+            }
+            Console.Write(">");
+            Console.WriteLine();
+            return pass;
+        }
+        public void Break()
+        {
+            isbroken = true;
+        }
+    }
     public class Str
     {
         public struct ConsoleNavKeys
@@ -130,7 +164,16 @@ namespace CoolNav
         {
             arrows,
             bullets,
-            space
+            space,
+            dash
+        }
+        public struct ConsoleInputKeys
+        {
+            public ConsoleKey enter { get; set; }
+            public ConsoleInputKeys(ConsoleKey en)
+            {
+                enter = en;
+            }
         }
     }
 }
