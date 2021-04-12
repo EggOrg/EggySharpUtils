@@ -22,6 +22,9 @@ A language to initialize or batch-initialize files. This is the parser.
 ## CoolNav
 TUI (Terminal UI) toolkit for c#.net projects.
 
+## MCLogsSharp
+mclo.gs wrapper for c#.
+
 ## BUILD
 Build with <code>dotnet build</code> or with Visual Studio. I recommend Visual Studio.
 <br><br>
