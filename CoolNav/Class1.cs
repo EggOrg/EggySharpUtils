@@ -8,6 +8,20 @@ using static CoolNav.Str;
 
 namespace CoolNav
 {
+    public class ConsoleInformationEngine
+    {
+        public void Initialize(string about, string title, string[] authors)
+        {
+            Console.WriteLine($"=- {title} -=");
+            Console.WriteLine(about);
+            string auth = "";
+            foreach (string aut in authors)
+            {
+                auth += aut + " ";
+            }
+            Console.WriteLine($"{auth}");
+        }
+    }
     public class ConsoleNavEngine
     {
         public bool isbroken = false;
@@ -123,27 +137,63 @@ namespace CoolNav
             return "broken";
         }
     }
-    public class ConsoleInputEngine
+    public class ConsoleSealedInputEngine
     {
         public bool isbroken = false;
-        public string Initialize(string desired, ConsoleInputKeys ky)
+        public string Initialize(int desired, ConsoleSealedInputKeys ky)
         {
             string pass = "";
+            int h = 0;
             Console.Write("<");
-            foreach (char c in desired)
+            while (true)
             {
-                Console.Write("*");
-                ConsoleKeyInfo ck = Console.ReadKey();
-                Console.Write("\b");
-                pass += ck.KeyChar;
+                if (h == desired)
+                {
+                    break;
+                }
+                else
+                {
+                    h += 1;
+                    ConsoleKeyInfo ck = Console.ReadKey(true);
+                    if (ck.Key != ConsoleKey.Enter && ck.Key != ConsoleKey.Backspace && ck.Key != ConsoleKey.Delete)
+                    {
+                        Console.Write("*");
+                        pass += ck.KeyChar;
+                    }
+                }
             }
             Console.Write(">");
             Console.WriteLine();
             return pass;
         }
-        public void Break()
+    }
+    public class ConsoleSearchEngine
+    {
+        public string Initialize(string[] choices, ConsoleColor backcolor)
         {
-            isbroken = true;
+            foreach (string choice in choices)
+            {
+                Console.WriteLine($"- {choice}");
+            }
+            string ans = Console.ReadLine();
+            if (choices.Contains<string>(ans))
+            {
+                Console.Clear();
+                foreach (string choice in choices)
+                {
+                    if (choice.Contains(ans))
+                    {
+                        Console.BackgroundColor = backcolor;
+                        Console.WriteLine($"-  {choice}");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"- {choice}");
+                    }
+                }
+            }
+            return ans;
         }
     }
     public class Str
@@ -167,10 +217,10 @@ namespace CoolNav
             space,
             dash
         }
-        public struct ConsoleInputKeys
+        public struct ConsoleSealedInputKeys
         {
             public ConsoleKey enter { get; set; }
-            public ConsoleInputKeys(ConsoleKey en)
+            public ConsoleSealedInputKeys(ConsoleKey en)
             {
                 enter = en;
             }
