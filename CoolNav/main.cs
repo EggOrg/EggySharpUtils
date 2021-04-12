@@ -203,7 +203,7 @@ namespace CoolNav
         {
             Console.Write("|");
             Console.BackgroundColor = ConsoleColor.White;
-            Util.RepeatAction(value / 10, async () => { await Task.Delay(delay);  Console.Write(" "); });
+            Util.RepeatAction(value / 10,  () => { Thread.Sleep(delay);  Console.Write(" "); });
             Console.ResetColor();
             Console.Write("|");
         }
