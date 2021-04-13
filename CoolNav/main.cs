@@ -24,13 +24,13 @@ namespace CoolNav
     }
     public class ConsoleVerticalNavEngine
     {
-        public bool isbroken = false;
-        public string[] c;
-        public Str.ConsoleNavKeys k;
-        public ConsoleColor bg;
-        public int sel = 0;
-        public Str.ConsoleVerticalNavStyle cns;
-        public int cho;
+        private bool isbroken = false;
+        private string[] c;
+        private Str.ConsoleNavKeys k;
+        private ConsoleColor bg;
+        private int sel = 0;
+        private Str.ConsoleVerticalNavStyle cns;
+        private int cho;
         public void Initialize(Str.ConsoleNavKeys keys, string[] choices, ConsoleColor selbg, Str.ConsoleVerticalNavStyle sr)
         {
             cns = sr;
@@ -203,19 +203,35 @@ namespace CoolNav
     }
     public class ConsoleHorizontalNavEngine
     {
-        public bool isbroken = false;
-        public string[] c;
-        public Str.ConsoleNavKeys k;
-        public ConsoleColor bg;
-        public int sel = 0;
-        public int cho;
-        public void Initialize(Str.ConsoleNavKeys keys, string[] choices, ConsoleColor selbg)
+        private bool isbroken = false;
+        private  string[] c;
+        private Str.ConsoleNavKeys k;
+        private ConsoleColor bg;
+        private int sel = 0;
+        private int cho;
+        private string bfc = "";
+        private string afc = "";
+        public void Initialize(Str.ConsoleNavKeys keys, string[] choices, ConsoleColor selbg, Str.ConsoleHorizontalNavStyle chns)
         {
             Console.WriteLine();
             int sel = 0;
-            foreach (string choice in choices)
+            if (chns == ConsoleHorizontalNavStyle.dash)
             {
-                Console.Write($"- {choice} -");
+                bfc = "-";
+                afc = "-";
+                foreach (string choice in choices)
+                {
+                    Console.Write($"- {choice} -");
+                }
+            }
+            else if (chns == ConsoleHorizontalNavStyle.space)
+            {
+                bfc = "  ";
+                afc = "  ";
+                foreach (string choice in choices)
+                {
+                    Console.Write($"  {choice}  ");
+                }
             }
             c = choices;
             k = keys;
@@ -236,12 +252,12 @@ namespace CoolNav
                 if (index == cho)
                 {
                     Console.BackgroundColor = bg;
-                    Console.Write($"- [{value}] -");
+                    Console.Write($"{bfc} [{value}] {afc}");
                     Console.BackgroundColor = origbg;
                 }
                 else
                 {
-                    Console.Write($"- {value} -");
+                    Console.Write($"{bfc} {value} {afc}");
                 }
             }
         }
@@ -339,6 +355,11 @@ namespace CoolNav
             bullets,
             space,
             dash
+        }
+        public enum ConsoleHorizontalNavStyle
+        {
+            dash,
+            space
         }
         public struct ConsoleSealedInputKeys
         {
