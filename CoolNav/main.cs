@@ -213,6 +213,11 @@ namespace CoolNav
             Thread.Sleep(delay);
             Console.Write(" ");
         }
+        public void Add(int value, int delay)
+        {
+            Thread.Sleep(delay);
+            Util.RepeatAction(value, () => { Console.Write(" "); });
+        }
         public void Close()
         {
             Console.ResetColor();
