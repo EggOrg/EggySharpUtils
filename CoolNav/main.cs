@@ -204,9 +204,14 @@ namespace CoolNav
             Console.Write("|");
             Console.BackgroundColor = ConsoleColor.White;
         }
-        public void Add(int value, int delay)
+        public void Add()
         {
-            Util.RepeatAction(value / 10, () => { Thread.Sleep(delay); Console.Write(" "); });
+            Console.Write(" ");
+        }
+        public void Add(int delay)
+        {
+            Thread.Sleep(delay);
+            Console.Write(" ");
         }
         public void Close()
         {
