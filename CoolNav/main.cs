@@ -22,32 +22,33 @@ namespace CoolNav
             Console.WriteLine($"{auth}");
         }
     }
-    public class ConsoleNavEngine
+    public class ConsoleVerticalNavEngine
     {
         public bool isbroken = false;
         public string[] c;
         public Str.ConsoleNavKeys k;
         public ConsoleColor bg;
         public int sel = 0;
-        public Str.ConsoleNavStyle cns;
-        public void Initialize(Str.ConsoleNavKeys keys, string[] choices, ConsoleColor selbg, Str.ConsoleNavStyle sr)
+        public Str.ConsoleVerticalNavStyle cns;
+        public int cho;
+        public void Initialize(Str.ConsoleNavKeys keys, string[] choices, ConsoleColor selbg, Str.ConsoleVerticalNavStyle sr)
         {
             cns = sr;
             int sel = 0;
             string ch = "";
-            if (sr == Str.ConsoleNavStyle.arrows)
+            if (sr == Str.ConsoleVerticalNavStyle.arrows)
             {
                 ch = ">";
             }
-            else if (sr == Str.ConsoleNavStyle.bullets)
+            else if (sr == Str.ConsoleVerticalNavStyle.bullets)
             {
                 ch = "o ";
             }
-            else if (sr == Str.ConsoleNavStyle.space)
+            else if (sr == Str.ConsoleVerticalNavStyle.space)
             {
                 ch = " ";
             }
-            else if (sr == Str.ConsoleNavStyle.dash)
+            else if (sr == Str.ConsoleVerticalNavStyle.dash)
             {
                 ch = "-";
             }
@@ -58,44 +59,45 @@ namespace CoolNav
             c = choices;
             k = keys;
             bg = selbg;
+            cns = sr;
         }
         public void Break()
         {
             isbroken = true;
         }
-        private void Rewrite(string[] choices, int choiced, ConsoleColor selbg, Str.ConsoleNavStyle sty)
+        private void Rewrite()
         {
             string ch = "";
             string sch = "";
-            if (sty == Str.ConsoleNavStyle.arrows)
+            if (cns == Str.ConsoleVerticalNavStyle.arrows)
             {
                 ch = ">";
                 sch = "<";
             }
-            else if (sty == Str.ConsoleNavStyle.bullets)
+            else if (cns == Str.ConsoleVerticalNavStyle.bullets)
             {
                 ch = "o ";
                 sch = "o  ";
             }
-            else if (sty == Str.ConsoleNavStyle.space)
+            else if (cns == Str.ConsoleVerticalNavStyle.space)
             {
                 ch = " ";
                 sch = "   ";
             }
-            else if (sty == Str.ConsoleNavStyle.dash)
+            else if (cns == Str.ConsoleVerticalNavStyle.dash)
             {
                 ch = "-";
                 sch = "- ";
             }
             Console.Clear();
             ConsoleColor origbg = Console.BackgroundColor;
-            foreach (var item in choices.Select((value, i) => new { i, value }))
+            foreach (var item in c.Select((value, i) => new { i, value }))
             {
                 var value = item.value;
                 var index = item.i;
-                if (index == choiced)
+                if (index == cho)
                 {
-                    Console.BackgroundColor = selbg;
+                    Console.BackgroundColor = bg;
                     Console.WriteLine(sch + value);
                     Console.BackgroundColor = origbg;
                 }
@@ -105,7 +107,7 @@ namespace CoolNav
                 }
             }
         }
-        public string Listen(ConsoleNavEngine cn)
+        public string Listen(ConsoleVerticalNavEngine cn)
         {
             while (isbroken == false)
             {
@@ -114,7 +116,8 @@ namespace CoolNav
                     if (sel != 0)
                     {
                         sel -= 1;
-                        Rewrite(c, sel, bg, cns);
+                        cho = sel;
+                        Rewrite();
                     }
                 }
                 else if (Console.KeyAvailable && Console.ReadKey(true).Key == k.down)
@@ -122,7 +125,8 @@ namespace CoolNav
                     if (sel < c.Length)
                     {
                         sel += 1;
-                        Rewrite(c, sel, bg, cns);
+                        cho = sel;
+                        Rewrite();
                     }
                     else if (sel == c.Length)
                     {
@@ -197,6 +201,85 @@ namespace CoolNav
             return h;
         }
     }
+    public class ConsoleHorizontalNavEngine
+    {
+        public bool isbroken = false;
+        public string[] c;
+        public Str.ConsoleNavKeys k;
+        public ConsoleColor bg;
+        public int sel = 0;
+        public int cho;
+        public void Initialize(Str.ConsoleNavKeys keys, string[] choices, ConsoleColor selbg)
+        {
+            Console.WriteLine();
+            int sel = 0;
+            foreach (string choice in choices)
+            {
+                Console.Write($"- {choice} -");
+            }
+            c = choices;
+            k = keys;
+            bg = selbg;
+        }
+        public void Break()
+        {
+            isbroken = true;
+        }
+        private void Rewrite()
+        {
+            Console.Clear();
+            ConsoleColor origbg = Console.BackgroundColor;
+            foreach (var item in c.Select((value, i) => new { i, value }))
+            {
+                var value = item.value;
+                var index = item.i;
+                if (index == cho)
+                {
+                    Console.BackgroundColor = bg;
+                    Console.Write($"- [{value}] -");
+                    Console.BackgroundColor = origbg;
+                }
+                else
+                {
+                    Console.Write($"- {value} -");
+                }
+            }
+        }
+        public string Listen(ConsoleHorizontalNavEngine cn)
+        {
+            while (isbroken == false)
+            {
+                if (Console.KeyAvailable && Console.ReadKey(true).Key == k.left)
+                {
+                    if (sel != 0)
+                    {
+                        sel -= 1;
+                        cho = sel;
+                        Rewrite();
+                    }
+                }
+                else if (Console.KeyAvailable && Console.ReadKey(true).Key == k.right)
+                {
+                    if (sel < c.Length)
+                    {
+                        sel += 1;
+                        cho = sel;
+                        Rewrite();
+                    }
+                    else if (sel == c.Length)
+                    {
+                        sel = c.Length;
+                    }
+                }
+                else if (Console.KeyAvailable && Console.ReadKey(true).Key == k.enter)
+                {
+                    Console.WriteLine();
+                    return c[sel];
+                }
+            }
+            return "broken";
+        }
+    }
     public class ConsoleLoadingEngine
     {
         public void Initialize()
@@ -239,14 +322,18 @@ namespace CoolNav
             public ConsoleKey up { get; set; }
             public ConsoleKey down { get; set; }
             public ConsoleKey enter { get; set; }
-            public ConsoleNavKeys(ConsoleKey u, ConsoleKey d, ConsoleKey r)
+            public ConsoleKey left { get; set; }
+            public ConsoleKey right { get; set; }
+            public ConsoleNavKeys(ConsoleKey u, ConsoleKey d, ConsoleKey r, ConsoleKey lk = ConsoleKey.NoName, ConsoleKey rk = ConsoleKey.NoName)
             {
+                left = lk;
+                right = rk;
                 up = u;
                 down = d;
                 enter = r;
             }
         }
-        public enum ConsoleNavStyle
+        public enum ConsoleVerticalNavStyle
         {
             arrows,
             bullets,
