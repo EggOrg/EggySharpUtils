@@ -173,7 +173,7 @@ namespace CoolNav
     }
     public class ConsoleSearchEngine
     {
-        public string Initialize(string[] choices, ConsoleColor backcolor)
+        public string Initialize(string[] choices, ConsoleColor backcolor, ConsoleSearchMethod csm)
         {
             List<string> parsed = new List<string>();
             foreach (string choice in choices)
@@ -184,17 +184,36 @@ namespace CoolNav
             if (choices.Contains<string>(h))
             {
                 Console.Clear();
-                foreach (string choice in choices)
+                if (csm == ConsoleSearchMethod.Contains)
                 {
-                    if (choice.Contains(h))
+                    foreach (string choice in choices)
                     {
-                        Console.BackgroundColor = backcolor;
-                        Console.WriteLine($"-   {choice}");
-                        Console.ResetColor();
+                        if (choice.Contains(h))
+                        {
+                            Console.BackgroundColor = backcolor;
+                            Console.WriteLine($"-   {choice}");
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.WriteLine($"- {choice}");
+                        }
                     }
-                    else
+                }
+                else if (csm == ConsoleSearchMethod.Equals)
+                {
+                    foreach (string choice in choices)
                     {
-                        Console.WriteLine($"- {choice}");
+                        if (choice.Equals(h))
+                        {
+                            Console.BackgroundColor = backcolor;
+                            Console.WriteLine($"-   {choice}");
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.WriteLine($"- {choice}");
+                        }
                     }
                 }
             }
@@ -368,6 +387,11 @@ namespace CoolNav
             {
                 enter = en;
             }
+        }
+        public enum ConsoleSearchMethod
+        {
+            Contains,
+            Equals
         }
     }
 }
